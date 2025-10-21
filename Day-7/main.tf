@@ -17,7 +17,7 @@ provider "vault" {
 }
 
 data "vault_kv_secret_v2" "example" {
-  mount = "secret" // change it according to your mount
+  mount = "kv" // change it according to your mount
   name  = "test-secret" // change it according to your secret
 }
 
@@ -27,6 +27,6 @@ resource "aws_instance" "my_instance" {
 
   tags = {
     Name = "test"
-    Secret = data.vault_kv_secret_v2.example.data["foo"]
+    Secret = data.vault_kv_secret_v2.example.data["username"]
   }
 }
